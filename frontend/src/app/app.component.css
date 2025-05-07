@@ -1,0 +1,26 @@
+.blueButton{
+  background-color: #2464EA;
+  color: white;
+  border-radius: 5px;
+  border-color: #2464EA;
+}
+
+.whiteButton{
+  background-color: white;
+  color: #2464EA;
+  border-radius: 5px;
+  border-color: #2464EA;
+}
+
+.redButton{
+  color: #D9291F;
+  background-color: white;
+  border-style: none;
+}
+
+.greenButton{
+  background-color: #147F3E;
+  color: white;
+  border-radius: 5px;
+  border-color: #147F3E;
+}
