@@ -1,0 +1,48 @@
+<button appCustomButton="white" >Añadir Elemento</button>
+
+<table >
+  <tr>
+    <th>ID</th>
+    <th>MODELO</th>
+    <th>MARCA</th>
+    <th>TOTAL</th>
+    <th>ACCIONES</th>
+  </tr>
+  @for (car of carArray; track $index) {
+    <tr>
+      <td>
+        <a routerLink="/cars/{{car.id}}" routerLinkActive="router-link-active" >{{car.id}}</a>
+      </td>
+      <td>
+        {{car.model}}
+      </td>
+      <td>
+        {{car.brand}}
+      </td>
+      <td>
+        {{car.total}}
+      </td>
+      <td>
+        <!-- <button [cdkMenuTriggerFor]="menu" >Acciones</button> -->
+        <!-- <ng-template #menu>
+          <div cdkMenu>
+            <div cdkMenuGroup>
+              <button cdkMenuItem >editar</button>
+              <button cdkMenuItem>eliminar</button>
+            </div>
+          </div>
+        </ng-template> -->
+
+        <!-- <button (click)="showMenu()">Acciones</button>
+        @if(isMenuShowing){
+          <button>editar</button>
+          <button>eliminar</button>
+        } -->
+        <button>editar</button>
+        <button>eliminar</button>
+
+      </td>
+    </tr>
+  }
+</table>
+
