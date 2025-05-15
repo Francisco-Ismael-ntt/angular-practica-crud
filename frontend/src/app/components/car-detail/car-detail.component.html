@@ -1,0 +1,42 @@
+
+<div>
+  <h3>{{car.brand}} -- {{car.model}}</h3>
+
+  <div>
+    <button appCustomButton="blue">Eliminar</button>
+    <button appCustomButton="white">Edita</button>
+  </div>
+
+  <p>ID: {{car.id}} </p>
+  <p>Total: {{car.total}} </p>
+  <p>Stock de coches</p>
+
+  <table>
+    <tr>
+      <td>Fecha de registro</td>
+      <td>Año de fabricacion</td>
+      <td>Precio</td>
+      <td>Kilometraje</td>
+      <td>Matrícula</td>
+      <td>Disponibilidad</td>
+    </tr>
+
+    @for (item of car.carDetails; track $index) {
+      <tr>
+        <td>{{item.registrationDate}}</td>
+        <td>{{item.manufactureYear}}</td>
+        <td>{{item.price}}</td>
+        <td>
+          {{item.mileage}}
+          @if(item.mileage == 0){
+            <p>nuevo</p>
+          }
+        </td>
+        <td>{{item.licensePlate}}</td>
+      </tr>
+    }
+
+  </table>
+
+
+</div>

@@ -11,12 +11,10 @@ export class CarService {
 
   private http = inject(HttpClient)
   baseUrl: string = 'http://localhost:3000'
-  commonHeaders = new HttpHeaders( {'Authorization':'Bearer mock-token'})
-
 
   getAllCars(){
     const endpoint = this.baseUrl + '/cars'
-    return this.http.get<[CarSummary]>(endpoint,{headers: this.commonHeaders})
+    return this.http.get<[CarSummary]>(endpoint)
   }
 
   createCar(car: CreateCarDto){

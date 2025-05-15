@@ -11,7 +11,7 @@
   @for (car of carArray; track $index) {
     <tr>
       <td>
-        {{car.id}}
+        <a routerLink="/cars/{{car.id}}" routerLinkActive="router-link-active" >{{car.id}}</a>
       </td>
       <td>
         {{car.model}}
@@ -23,7 +23,24 @@
         {{car.total}}
       </td>
       <td>
-        <button>Acciones</button>
+        <!-- <button [cdkMenuTriggerFor]="menu" >Acciones</button> -->
+        <!-- <ng-template #menu>
+          <div cdkMenu>
+            <div cdkMenuGroup>
+              <button cdkMenuItem >editar</button>
+              <button cdkMenuItem>eliminar</button>
+            </div>
+          </div>
+        </ng-template> -->
+
+        <!-- <button (click)="showMenu()">Acciones</button>
+        @if(isMenuShowing){
+          <button>editar</button>
+          <button>eliminar</button>
+        } -->
+        <button>editar</button>
+        <button>eliminar</button>
+
       </td>
     </tr>
   }
