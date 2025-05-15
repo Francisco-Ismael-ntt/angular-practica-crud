@@ -1,9 +1,7 @@
 import { CarDetailsDto } from "./car-details-model"
 
-export interface CarModel {
+export interface CreateCarDto{
   brand: string
   model: string
-  carDetails: CarDetailsDto[]
-  id: string
-  total: number
+  carDetails: CarDetailsDto
 }
