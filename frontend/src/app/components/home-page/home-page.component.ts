@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CarService } from '../../services/car.service';
+import { CarSummary } from '../../models/car-summary-model';
+import { CustomButtonDirective } from '../../directives/custom-button.directive';
+import { RouterLink } from '@angular/router';
+
 import { TableComponentComponent } from '../table-component/table-component.component';
+
 
 @Component({
   selector: 'app-home-page',
@@ -8,5 +14,39 @@ import { TableComponentComponent } from '../table-component/table-component.comp
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
+  carService = inject(CarService)
+  carArray!: CarSummary[]
+  carMock:CarSummary[] = [
+    {brand: 'asd', model: 'asd', id: 'asd', total: 'asd'},
+    {brand: 'asd', model: 'asd', id: 'asd', total: 'asd'},
+    {brand: 'asd', model: 'asd', id: 'asd', total: 'asd'},
+  ]
+  isMenuShowing: boolean = false
+
+  tableHead = ['id','modelo','marca','total','acciones']
+  tableBody!: any[]
+
+  showMenu(){
+    this.isMenuShowing = !this.isMenuShowing
+  }
+
+  ngOnInit(){
+    this.getAllCars()
+  }
+
+  getAllCars(){
+    this.carService.getAllCars().subscribe({
+      next: (value)=>{
+        console.log(value)
+        this.carArray = value
+        this.tableBody = value
+      },
+      error(err) {
+        console.log(err)
+      },
+    })
+  }
+
+
 
 }

@@ -1,48 +1,68 @@
-<button appCustomButton="white" >Añadir Elemento</button>
+
 
 <table >
   <tr>
-    <th>ID</th>
-    <th>MODELO</th>
-    <th>MARCA</th>
-    <th>TOTAL</th>
-    <th>ACCIONES</th>
+    @for (item of tableHead; track $index) {
+      <th>{{item}}</th>
+    }
   </tr>
-  @for (car of carArray; track $index) {
-    <tr>
-      <td>
-        <a routerLink="/cars/{{car.id}}" routerLinkActive="router-link-active" >{{car.id}}</a>
-      </td>
-      <td>
-        {{car.model}}
-      </td>
-      <td>
-        {{car.brand}}
-      </td>
-      <td>
-        {{car.total}}
-      </td>
-      <td>
-        <!-- <button [cdkMenuTriggerFor]="menu" >Acciones</button> -->
-        <!-- <ng-template #menu>
-          <div cdkMenu>
-            <div cdkMenuGroup>
-              <button cdkMenuItem >editar</button>
-              <button cdkMenuItem>eliminar</button>
-            </div>
-          </div>
-        </ng-template> -->
 
-        <!-- <button (click)="showMenu()">Acciones</button>
-        @if(isMenuShowing){
+  @if(tableBodyCarSum){
+    @for (item of tableBodyCarSum; track $index) {
+      <tr>
+        <td>
+
+          <a routerLink="/cars/{{item.id}}" routerLinkActive="router-link-active" >{{item.id}}</a>
+        </td>
+        <td>
+          {{item.model}}
+        </td>
+        <td>
+          {{item.brand}}
+        </td>
+        <td>
+          {{item.total}}
+        </td>
+        <td>
           <button>editar</button>
           <button>eliminar</button>
-        } -->
-        <button>editar</button>
-        <button>eliminar</button>
+        </td>
+      </tr>
+    }
 
-      </td>
-    </tr>
+
   }
+
+  @if (tableBodyCar) {
+
+      @for (item of tableBodyCar.carDetails; track $index) {
+        <tr>
+          <td>{{item.registrationDate}}</td>
+          <td>{{item.manufactureYear}}</td>
+          <td>{{item.price}}</td>
+          <td>
+            {{item.mileage | mileage}}
+            @if(item.mileage == 0){
+              <p-tag [style]="{background: 'green', color: 'black'}" value="Nuevo"/>
+            }@else if (item.mileage < 100) {
+              <p-tag [style]="{background: 'blue', color: 'white'}" value="Nuevo"/>
+            }@else {
+              <p-tag [style]="{background: 'yellow', color: 'black'}" value="Nuevo"/>
+            }
+          </td>
+          <td>{{item.licensePlate}}</td>
+          <td>
+            @if(item.availability){
+              <p [style]="{background: 'green', color: 'white'}" >Disponible</p>
+            }@else {
+              <p [style]="{background: 'red', color: 'white'}" >No disponible</p>
+            }
+          </td>
+        </tr>
+      }
+
+
+  }
+
 </table>
 
