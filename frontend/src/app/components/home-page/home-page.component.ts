@@ -5,11 +5,11 @@ import { CustomButtonDirective } from '../../directives/custom-button.directive'
 import { RouterLink } from '@angular/router';
 
 import { TableComponentComponent } from '../table-component/table-component.component';
-
+import { CarFormComponent } from '../car-form/car-form.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [TableComponentComponent],
+  imports: [TableComponentComponent, RouterLink],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })

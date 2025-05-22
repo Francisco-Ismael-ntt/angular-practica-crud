@@ -18,12 +18,13 @@ export class BreadcrumbComponent {
       const currentUrl = router.url.split('/').filter(Boolean)
       this.breadcrumb = []
       const baseBreadcrumb = [
-        {label: 'Home', url: '/'},
+        {label: 'Inicio', url: '/'},
         {label: 'Detalles', url: '/cars'},
-        {label: 'Editar coche', url: '/edit'}
+        {label: 'Editar coche', url: '/form'}
       ]
-
-      if(currentUrl.includes('cars')){
+      if(currentUrl.includes('form')){
+        this.breadcrumb.push(baseBreadcrumb[0], baseBreadcrumb[1], baseBreadcrumb[2])
+      }else if(currentUrl.includes('cars')){
         this.breadcrumb.push(baseBreadcrumb[0], baseBreadcrumb[1])
       } else {
         this.breadcrumb.push(baseBreadcrumb[0])

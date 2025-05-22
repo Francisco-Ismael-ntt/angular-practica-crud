@@ -1,7 +1,7 @@
-<hr>
+
 <nav>
   @for (item of breadcrumb; track $index) {
     <a [routerLink]="item.url" routerLinkActive="router-link-active" >{{item.label}}</a> /
   }
 </nav>
-<hr>
+

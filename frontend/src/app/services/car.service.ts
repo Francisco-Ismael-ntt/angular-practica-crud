@@ -34,4 +34,14 @@ export class CarService {
      return this.http.delete(endpoint)
   }
 
+  getBrands(){
+    const endpoint = this.baseUrl + '/brands'
+    return this.http.get<string[]>(endpoint)
+  }
+
+  getModels(brand: string){
+    const endpoint = this.baseUrl+'/brands/'+brand+'/models'
+    return this.http.get<string[]>(endpoint)
+  }
+
 }

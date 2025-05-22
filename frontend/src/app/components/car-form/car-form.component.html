@@ -1,0 +1,44 @@
+<form action="" [formGroup]="carForm" (ngSubmit)="onSubmit()">
+
+  <h3>Formulario de coches</h3>
+  <p>Marca</p>
+  <select #brands (change)="getModels(brands.value)" formControlName="brand" >
+    @for (item of brandsArray; track $index) {
+      <option>{{item}}</option>
+    }
+  </select>
+  <p>Modelo</p>
+  <select formControlName="model">
+    @for (item of modelsArray; track $index) {
+      <option>{{item}}</option>
+    }
+  </select>
+
+  <h4>Detalles de los coches</h4>
+
+  <div>
+    <p>Fecha de registro</p>
+    <input type="date" formControlName="registerDate">
+    <p>Año de fabricacion</p>
+    <input formControlName="manufactureYear">
+
+    <p>Moneda</p>
+    <select  formControlName="currency">
+      <option>EUR</option>
+    </select>
+    <p>Precio</p>
+    <input formControlName="price">
+
+    <p>Matricula</p>
+    <input formControlName="licensePlate">
+    <p>Kilometraje</p>
+    <input formControlName="milleage">
+    <p>Disponibilidad</p>
+    <input type="checkbox" formControlName="avaiability">
+    <br>
+    <button>Eliminar</button>
+  </div>
+  <input type="submit" >
+</form>
+
+

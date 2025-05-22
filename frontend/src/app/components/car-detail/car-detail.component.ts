@@ -6,11 +6,11 @@ import { CustomButtonDirective } from '../../directives/custom-button.directive'
 import { MileagePipe } from '../../pipes/mileage.pipe';
 import { TagModule } from 'primeng/tag';
 import { TableComponentComponent } from "../table-component/table-component.component";
-
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-car-detail',
-  imports: [CustomButtonDirective, MileagePipe, TagModule, TableComponentComponent],
+  imports: [CustomButtonDirective, TagModule, TableComponentComponent, RouterLink],
   templateUrl: './car-detail.component.html',
   styleUrl: './car-detail.component.css'
 })
