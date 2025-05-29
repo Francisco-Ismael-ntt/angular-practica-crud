@@ -25,7 +25,7 @@
         </td>
         <td>
           <button routerLink="/form/{{item.id}}" >editar</button>
-          <button>eliminar</button>
+          <button (click)="deleteCar(item.id)" >eliminar</button>
         </td>
       </tr>
     }

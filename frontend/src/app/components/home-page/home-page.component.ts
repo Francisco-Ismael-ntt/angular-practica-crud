@@ -38,7 +38,7 @@ export class HomePageComponent {
     this.carService.getAllCars().subscribe({
       next: (value)=>{
         console.log(value)
-        this.carArray = value
+        this.tableBody = []
         this.tableBody = value
       },
       error(err) {

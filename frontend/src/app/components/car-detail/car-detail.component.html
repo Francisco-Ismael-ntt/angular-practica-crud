@@ -9,7 +9,7 @@
       <p>Stock de coches</p>
     </div>
     <div class="col">
-      <button appCustomButton="blue">Eliminar</button>
+      <button appCustomButton="blue" (click)="deleteCar(car.id)" routerLink="/" >Eliminar</button>
       <button appCustomButton="white" routerLink="/form/{{car.id}}" >Editar</button>
     </div>
 

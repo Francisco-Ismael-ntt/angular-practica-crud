@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../../services/car.service';
 import { CarModel } from '../../models/car-model';
 import { CustomButtonDirective } from '../../directives/custom-button.directive';
@@ -42,6 +42,17 @@ export class CarDetailComponent {
 
       },
       error(err) {
+        console.log(err)
+      },
+    })
+  }
+
+  deleteCar(carId: string){
+    this.carService.deleteCar(carId).subscribe({
+      next:(value) => {
+        console.log(value)
+
+      }, error(err) {
         console.log(err)
       },
     })
