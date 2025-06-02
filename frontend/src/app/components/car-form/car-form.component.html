@@ -4,14 +4,21 @@
   <p>Marca</p>
   <select #brands (change)="getModels(brands.value)" formControlName="brand" >
     @for (brand of brandsArray; track $index) {
-      <option>{{brand}}</option>
-
+      @if(brand == car.brand){
+        <option selected >{{brand}}</option>
+      } @else {
+        <option>{{brand}}</option>
+      }
     }
   </select>
   <p>Modelo</p>
   <select formControlName="model" >
     @for (item of modelsArray; track $index) {
-      <option >{{item}}</option>
+      @if(item == car.model){
+        <option selected >{{item}}</option>
+      } @else {
+        <option >{{item}}</option>
+      }
 
     }
   </select>
@@ -21,6 +28,7 @@
       <h4>Detalles del coche {{$index + 1}}</h4>
       <div [formGroupName]="$index">
         <p>Fecha de registro</p>
+
         <input type="date" formControlName="registerDate">
         <p>Año de fabricacion</p>
         <input formControlName="manufactureYear">

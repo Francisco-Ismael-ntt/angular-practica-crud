@@ -16,10 +16,6 @@ import { CarModel } from '../../models/car-model';
 })
 export class CarFormComponent {
 
-
-
-
-  //refactorizacion
   private route = inject(ActivatedRoute)
   carService = inject(CarService)
 
@@ -29,26 +25,13 @@ export class CarFormComponent {
   car!: CarModel
 
   fb = new FormBuilder
-  carForm: FormRecord = this.fb.group({
-    brand: this.fb.control('',[Validators.required]),
-    model: this.fb.control('',[Validators.required]),
-    details: this.fb.array([
-      this.fb.group(
-        {
-          registerDate:  this.fb.control('',[Validators.required]),
-          manufactureYear: this.fb.control(0,[Validators.required]),
-          currency: this.fb.control('',[Validators.required]),
-          price: this.fb.control(0,[Validators.required]),
-          licensePlate: this.fb.control('',[Validators.required]),
-          milleage: this.fb.control(0,[Validators.required]),
-          avaiability: this.fb.control(false, [Validators.required])
-        }
-      )
-    ])
-  })
+  carForm!: FormGroup
+
   details():FormArray{
     return <FormArray>this.carForm.get('details')
   }
+
+
 
 
   ngOnInit(){
@@ -60,6 +43,7 @@ export class CarFormComponent {
         this.getCarById(this.carId)
       } else {
         console.log('no car id')
+        this.setDefaultForm()
         this.getBrands()
       }
     })
@@ -70,6 +54,52 @@ export class CarFormComponent {
 
 
   /** CREACION Y MODIFICACION DEL FORMULARIO */
+  setDefaultForm(){
+    this.carForm = this.fb.group({
+      brand: this.fb.control('',[Validators.required]),
+      model: this.fb.control('',[Validators.required]),
+      details: this.fb.array([
+        this.fb.group(
+          {
+            registerDate:  this.fb.control('',[Validators.required]),
+            manufactureYear: this.fb.control(0,[Validators.required]),
+            currency: this.fb.control('',[Validators.required]),
+            price: this.fb.control(0,[Validators.required]),
+            licensePlate: this.fb.control('',[Validators.required]),
+            milleage: this.fb.control(0,[Validators.required]),
+            avaiability: this.fb.control(false, [Validators.required])
+          }
+        )
+      ])
+    })
+  }
+
+  populatingByServerData(data: CarModel){
+
+    console.log('populating with server data')
+    this.carForm = this.fb.group({
+      brand: this.fb.control(data.brand,[Validators.required]),
+      model: this.fb.control(data.model,[Validators.required]),
+      details: this.fb.array([])
+    })
+
+    data.carDetails.forEach(detail => {
+      const detailComponent = this.fb.group({
+        registerDate:  this.fb.control(detail.registrationDate,[Validators.required]),
+        manufactureYear: this.fb.control(detail.manufactureYear,[Validators.required]),
+        currency: this.fb.control(detail.currency,[Validators.required]),
+        price: this.fb.control(detail.price,[Validators.required]),
+        licensePlate: this.fb.control(detail.licensePlate,[Validators.required]),
+        milleage: this.fb.control(detail.mileage,[Validators.required]),
+        avaiability: this.fb.control(detail.availability, [Validators.required])
+      });
+      (<FormArray>this.carForm.get('details')).push(detailComponent);
+    })
+
+
+
+  }
+
   addDetails(){
     const newCarDetail: FormGroup = this.fb.group({
         registerDate:  this.fb.control('',[Validators.required]),
@@ -85,6 +115,8 @@ export class CarFormComponent {
 
 
   }
+
+
 
   deleteDetals(index: number){
     this.details().removeAt(index)
@@ -145,23 +177,6 @@ export class CarFormComponent {
     } else {
       console.log('fallo en validacion')
     }
-  }
-
-  populatingByServerData(data: CarModel){
-
-    this.carForm.removeControl('brand')
-    this.carForm.removeControl('model')
-    this.carForm.removeControl('details')
-
-    const brandControl = this.fb.control(data.brand, Validators.required)
-    const modelControl =  this.fb.control(data.model, Validators.required)
-    const detailControl = data.carDetails.map( detail => {
-      return this.fb.control(detail, Validators.required)
-    })
-
-    this.carForm.addControl('brand', brandControl)
-    this.carForm.addControl('model', modelControl)
-    this.carForm.addControl('details', this.fb.array(detailControl))
   }
 
   /** LLAMADAS API */
