@@ -8,12 +8,14 @@ import { TagModule } from 'primeng/tag';
 import { CarModel } from '../../models/car-model';
 import { MileagePipe } from '../../pipes/mileage.pipe';
 
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+
 
 @Component({
   selector: 'app-table-component',
-  imports: [RouterLink, MileagePipe, TagModule],
+  imports: [RouterLink, MileagePipe, TagModule, DeleteModalComponent],
   templateUrl: './table-component.component.html',
-  styleUrl: './table-component.component.css'
+  styleUrl: './table-component.component.scss'
 })
 export class TableComponentComponent {
 
@@ -23,18 +25,28 @@ export class TableComponentComponent {
 
   carDeletedEvent = output()
 
-  carService = inject(CarService)
+  isModalVisible = false
 
-  deleteCar(carId: string){
-    this.carService.deleteCar(carId).subscribe({
-      next:(value) => {
-        console.log(value)
-        this.carDeletedEvent.emit()
-      }, error(err) {
-        console.log(err)
-      },
-    })
+  showModal(){
+    this.isModalVisible = true
   }
+  hideModal(){
+    this.isModalVisible = false
+    this.carDeletedEvent.emit()
+  }
+
+  // carService = inject(CarService)
+
+  // deleteCar(carId: string){
+  //   this.carService.deleteCar(carId).subscribe({
+  //     next:(value) => {
+  //       console.log(value)
+  //       this.carDeletedEvent.emit()
+  //     }, error(err) {
+  //       console.log(err)
+  //     },
+  //   })
+  // }
 
 
 

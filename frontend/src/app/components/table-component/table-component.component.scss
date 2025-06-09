@@ -1,0 +1,34 @@
+$color-odd: lightgray;
+$color-even: white;
+
+button{
+  display: block;
+  margin-left: 12.5%;
+  margin-bottom: 10px;
+}
+
+
+table{
+  border-spacing: 0;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  th{
+    text-align: left;
+    padding: 10px;
+  }
+  tr:nth-child(odd){
+    background-color: $color-odd;
+
+  }
+  tr:nth-child(even){
+    background-color: $color-even;
+
+  }
+  td{
+    padding: 10px;
+  }
+}
+
+

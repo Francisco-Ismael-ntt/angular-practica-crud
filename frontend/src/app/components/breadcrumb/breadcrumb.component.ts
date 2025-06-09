@@ -6,7 +6,7 @@ import { filter } from 'rxjs';
   selector: 'app-breadcrumb',
   imports: [RouterLink],
   templateUrl: './breadcrumb.component.html',
-  styleUrl: './breadcrumb.component.css'
+  styleUrl: './breadcrumb.component.scss'
 })
 export class BreadcrumbComponent {
   breadcrumb: {label: string, url: string}[] = []

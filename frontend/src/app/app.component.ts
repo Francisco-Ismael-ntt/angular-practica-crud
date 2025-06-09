@@ -8,10 +8,10 @@ import { CarFormComponent } from "./components/car-form/car-form.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CarFormComponent, RouterOutlet, BreadcrumbComponent, CarFormComponent],
+  imports: [RouterOutlet, BreadcrumbComponent],
 
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'frontend';

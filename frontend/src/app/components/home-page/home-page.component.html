@@ -1,3 +1,5 @@
 
-<button routerLink="/form" >Añadir Elemento</button>
-<app-table-component (carDeletedEvent)="getAllCars()" [tableHead]="tableHead" [tableBodyCarSum]="tableBody" ></app-table-component>
+<button appCustomButton="white" routerLink="/form" >Añadir Elemento</button>
+<div>
+  <app-table-component (carDeletedEvent)="getAllCars()" [tableHead]="tableHead" [tableBodyCarSum]="tableBody" ></app-table-component>
+</div>

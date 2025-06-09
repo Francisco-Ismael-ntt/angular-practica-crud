@@ -1,5 +1,5 @@
 
-<div>
+<div class="container" >
   <div class="row">
 
     <div class="col">
@@ -9,11 +9,15 @@
       <p>Stock de coches</p>
     </div>
     <div class="col">
-      <button appCustomButton="blue" (click)="deleteCar(car.id)" routerLink="/" >Eliminar</button>
+      <button appCustomButton="blue" (click)="showModal()"  >Eliminar</button>
+      @if(isModalVisible){
+        <app-delete-modal (close)="hideModal()" [carModel]="car" ></app-delete-modal>
+      }
       <button appCustomButton="white" routerLink="/form/{{car.id}}" >Editar</button>
     </div>
 
   </div>
-
-  <app-table-component [tableHead]="tableHead" [tableBodyCar]="car" ></app-table-component>
+  <div class="table">
+    <app-table-component [tableHead]="tableHead" [tableBodyCar]="car" ></app-table-component>
+  </div>
 </div>

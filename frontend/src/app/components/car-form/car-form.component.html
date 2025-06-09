@@ -1,13 +1,15 @@
 <form  [formGroup]="carForm" (ngSubmit)="onSubmit()">
-
+  @if(showAlert){
+    <app-alert (close)="closeAlert()" ></app-alert>
+  }
   <h3>Formulario de coches</h3>
   <p>Marca</p>
   <select #brands (change)="getModels(brands.value)" formControlName="brand" >
-    @for (brand of brandsArray; track $index) {
-      @if(brand == car.brand){
-        <option selected >{{brand}}</option>
+    @for (item of brandsArray; track $index) {
+      @if(item == car.brand){
+        <option selected >{{item}}</option>
       } @else {
-        <option>{{brand}}</option>
+        <option>{{item}}</option>
       }
     }
   </select>

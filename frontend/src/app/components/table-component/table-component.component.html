@@ -25,9 +25,12 @@
         </td>
         <td>
           <button routerLink="/form/{{item.id}}" >editar</button>
-          <button (click)="deleteCar(item.id)" >eliminar</button>
+          <button (click)="showModal()" >eliminar</button>
         </td>
       </tr>
+      @if(isModalVisible){
+        <app-delete-modal (close)="hideModal()" [carSummary]="item" ></app-delete-modal>
+      }
     }
 
 

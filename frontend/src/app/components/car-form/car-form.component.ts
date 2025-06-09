@@ -7,12 +7,13 @@ import { CarDetailsDto } from '../../models/car-details-model';
 import { CarSummary } from '../../models/car-summary-model';
 import { ActivatedRoute } from '@angular/router';
 import { CarModel } from '../../models/car-model';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-car-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AlertComponent],
   templateUrl: './car-form.component.html',
-  styleUrl: './car-form.component.css'
+  styleUrl: './car-form.component.scss'
 })
 export class CarFormComponent {
 
@@ -22,10 +23,18 @@ export class CarFormComponent {
   carId!: string
   brandsArray!: string[]
   modelsArray!: string[]
-  car!: CarModel
+  car: CarModel = {
+    brand:'',
+    model:'',
+    id:'',
+    total:0,
+    carDetails:[]
+  }
 
   fb = new FormBuilder
-  carForm!: FormGroup
+  carForm: FormGroup = this.fb.group({})
+
+  showAlert: boolean = false;
 
   details():FormArray{
     return <FormArray>this.carForm.get('details')
@@ -34,17 +43,16 @@ export class CarFormComponent {
 
 
 
-  ngOnInit(){
+  constructor(){
     this.route.params.subscribe((params)=>{
+      this.getBrands()
       if(params['id']){
         console.log(params['id'])
         this.carId = params['id']
-        this.getBrands()
         this.getCarById(this.carId)
       } else {
         console.log('no car id')
         this.setDefaultForm()
-        this.getBrands()
       }
     })
 
@@ -162,20 +170,20 @@ export class CarFormComponent {
     return carDto
   }
   onSubmit(){
-    console.log(this.carForm)
-    const newCar = this.collectData()
+    console.log(this.carForm);
+    const newCar = this.collectData();
     if(newCar){
-      console.log(newCar)
+      console.log(newCar);
 
       if(this.carId != null){
-        this.updateCar(this.carId, newCar)
+        this.updateCar(this.carId, newCar);
 
       } else {
-        this.createCar(newCar)
+        this.createCar(newCar);
       }
 
     } else {
-      console.log('fallo en validacion')
+      console.log('fallo en validacion');
     }
   }
 
@@ -183,10 +191,11 @@ export class CarFormComponent {
   getBrands(){
     this.carService.getBrands().subscribe({
       next: (value) => {
-        this.brandsArray = value
+        console.log(value);
+        this.brandsArray = value;
       },
       error(err) {
-        console.log(err)
+        console.log(err);
       },
     })
   }
@@ -205,6 +214,7 @@ export class CarFormComponent {
     this.carService.updateCar(carId, car).subscribe({
       next:(value) => {
         console.log(value)
+        this.showAlert = true;
       },
       error(err) {
         console.log(err)
@@ -216,6 +226,7 @@ export class CarFormComponent {
     this.carService.createCar(car).subscribe({
       next: (value) => {
         console.log(value)
+        this.showAlert = true;
       },
       error(err) {
         console.log(err)
@@ -234,4 +245,11 @@ export class CarFormComponent {
     })
 
   }
+
+
+  // cerrar alert
+  closeAlert(){
+    this.showAlert = false
+  }
+
 }

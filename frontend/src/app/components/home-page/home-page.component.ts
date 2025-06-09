@@ -9,9 +9,9 @@ import { CarFormComponent } from '../car-form/car-form.component';
 
 @Component({
   selector: 'app-home-page',
-  imports: [TableComponentComponent, RouterLink],
+  imports: [TableComponentComponent, RouterLink, CustomButtonDirective],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
   carService = inject(CarService)

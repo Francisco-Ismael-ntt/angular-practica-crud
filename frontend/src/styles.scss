@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+
+$green: #147F3E;
+$blue: #2464EA;
+$red: #D9291F;
+
+.blueButton{
+  background-color: $blue;
+  color: white;
+  border-radius: 5px;
+  border-color: $blue;
+}
+
+.whiteButton{
+  background-color: white;
+  color: $blue;
+  border-radius: 5px;
+  border-color: $blue;
+}
+
+.redButton{
+  color: $red;
+  background-color: white;
+  border-style: none;
+}
+
+.greenButton{
+  background-color: $green;
+  color: white;
+  border-radius: 5px;
+  border-color: $green;
+}
+
+body{
+  background-color: lightblue;
+}
+
+

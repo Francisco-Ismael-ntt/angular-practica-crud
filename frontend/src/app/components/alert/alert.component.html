@@ -1,0 +1,9 @@
+<div class="modal-overlay" (click)="closeAlert()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <p class="bold">Exito</p>
+    <p>El coche ha sido guardado con exito</p>
+    <div class="buttonContainer">
+      <button class="col" (click)="closeAlert()">X</button>
+    </div>
+  </div>
+</div>

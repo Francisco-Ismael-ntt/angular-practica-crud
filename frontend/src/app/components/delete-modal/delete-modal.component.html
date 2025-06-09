@@ -1,0 +1,12 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h1>Vas a eliminar {{car.brand}}--{{car.model}}</h1>
+    <p>Estas seguro que deseas elimiar el coche? Esta accion no se puede deshacer</p>
+
+    <div class="buttonContainer">
+      <button appCustomButton="white" (click)="closeModal()">Cancelar</button>
+      <button appCustomButton="blue" (click)="deleteCar()" >Aceptar</button>
+    </div>
+
+  </div>
+</div>
