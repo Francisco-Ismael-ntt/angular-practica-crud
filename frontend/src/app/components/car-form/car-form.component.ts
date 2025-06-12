@@ -8,10 +8,11 @@ import { CarSummary } from '../../models/car-summary-model';
 import { ActivatedRoute } from '@angular/router';
 import { CarModel } from '../../models/car-model';
 import { AlertComponent } from '../alert/alert.component';
+import { CustomButtonDirective } from '../../directives/custom-button.directive';
 
 @Component({
   selector: 'app-car-form',
-  imports: [ReactiveFormsModule, AlertComponent],
+  imports: [ReactiveFormsModule, AlertComponent, CustomButtonDirective],
   templateUrl: './car-form.component.html',
   styleUrl: './car-form.component.scss'
 })

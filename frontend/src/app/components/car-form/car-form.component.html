@@ -1,57 +1,85 @@
 <form  [formGroup]="carForm" (ngSubmit)="onSubmit()">
-  @if(showAlert){
-    <app-alert (close)="closeAlert()" ></app-alert>
-  }
-  <h3>Formulario de coches</h3>
-  <p>Marca</p>
-  <select #brands (change)="getModels(brands.value)" formControlName="brand" >
-    @for (item of brandsArray; track $index) {
-      @if(item == car.brand){
-        <option selected >{{item}}</option>
-      } @else {
-        <option>{{item}}</option>
-      }
+
+  <div class="basicData">
+    @if(showAlert){
+      <app-alert (close)="closeAlert()" ></app-alert>
     }
-  </select>
-  <p>Modelo</p>
-  <select formControlName="model" >
-    @for (item of modelsArray; track $index) {
-      @if(item == car.model){
-        <option selected >{{item}}</option>
-      } @else {
-        <option >{{item}}</option>
+    <h3>Formulario de coches</h3>
+    <p>Marca</p>
+    <select class="dataField" #brands (change)="getModels(brands.value)" formControlName="brand" >
+      @for (item of brandsArray; track $index) {
+        @if(item == car.brand){
+          <option selected >{{item}}</option>
+        } @else {
+          <option>{{item}}</option>
+        }
       }
+    </select>
+    <p>Modelo</p>
+    <select class="dataField" formControlName="model" >
+      @for (item of modelsArray; track $index) {
+        @if(item == car.model){
+          <option selected >{{item}}</option>
+        } @else {
+          <option >{{item}}</option>
+        }
 
-    }
-  </select>
+      }
+    </select>
+    <h4>Detalles de los coches</h4>
+  </div>
 
-  <div formArrayName = 'details'>
-    @for (item of details().controls; track $index) {
-      <h4>Detalles del coche {{$index + 1}}</h4>
-      <div [formGroupName]="$index">
-        <p>Fecha de registro</p>
 
-        <input type="date" formControlName="registerDate">
-        <p>Año de fabricacion</p>
-        <input formControlName="manufactureYear">
 
-        <p>Moneda</p>
-        <select  formControlName="currency">
-          <option>EUR</option>
-        </select>
-        <p>Precio</p>
-        <input formControlName="price">
+  <div class="details" formArrayName = 'details'>
 
-        <p>Matricula</p>
-        <input formControlName="licensePlate">
-        <p>Kilometraje</p>
-        <input formControlName="milleage">
-        <p>Disponibilidad</p>
-        <input type="checkbox" formControlName="avaiability">
-        <br>
-        <button (click)="deleteDetals($index)" >Eliminar</button>
+
+
+
+      @for (item of details().controls; track $index) {
+        <div class="row" >
+          <div [formGroupName]="$index">
+
+            <div class="col">
+              <h4>Detalles del coche {{$index + 1}}</h4>
+
+              <p>Fecha de registro</p>
+              <input class="dataField" type="date" formControlName="registerDate">
+
+              <p>Moneda</p>
+              <select class="dataField" formControlName="currency">
+                <option>EUR</option>
+              </select>
+
+              <p>Matricula</p>
+              <input class="dataField" formControlName="licensePlate">
+
+              <p>Disponibilidad</p>
+              <input type="checkbox" formControlName="avaiability">
+            </div>
+
+            <div class="col">
+              <p>Año de fabricacion</p>
+              <input class="dataField" formControlName="manufactureYear">
+
+              <p>Precio</p>
+              <input class="dataField" formControlName="price">
+
+              <p>Kilometraje</p>
+              <input class="dataField" formControlName="milleage">
+
+              <button appCustomButton="red" (click)="deleteDetals($index)" >
+                <img class="trashCan" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgy6cH4pk8uBtQ-_MBHx5MtDO8ms62KxR0UQ&s" alt="">
+                Eliminar
+              </button>
+            </div>
+        </div>
       </div>
-    }
+      }
+
+
+
+
   </div>
 
 

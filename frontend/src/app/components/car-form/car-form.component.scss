@@ -1,0 +1,38 @@
+form{
+  background-color: white;
+  margin: auto;
+  width: 75%;
+}
+.basicData{
+  margin: 20px;
+  padding-top: 20px;
+}
+
+.row {
+  border-color: black;
+  border: 1px;
+  border-radius: 5px;
+  border-style: solid;
+
+  margin: 20px;
+  padding: 20px;
+
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  flex-basis: 100%;
+}
+.dataField{
+  width: 100%;
+  background-color: lightgray;
+}
+.trashCan{
+  width: 10px;
+}
