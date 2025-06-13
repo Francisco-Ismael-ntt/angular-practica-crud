@@ -1,28 +1,28 @@
-<form  [formGroup]="carForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
 
   <div class="basicData">
     @if(showAlert){
-      <app-alert (close)="closeAlert()" ></app-alert>
+    <app-alert (close)="closeAlert()"></app-alert>
     }
     <h3>Formulario de coches</h3>
     <p>Marca</p>
-    <select class="dataField" #brands (change)="getModels(brands.value)" formControlName="brand" >
+    <select class="dataField" #brands (change)="getModels(brands.value)" formControlName="brand">
       @for (item of brandsArray; track $index) {
-        @if(item == car.brand){
-          <option selected >{{item}}</option>
-        } @else {
-          <option>{{item}}</option>
-        }
+      @if(item == car.brand){
+      <option selected>{{item}}</option>
+      } @else {
+      <option>{{item}}</option>
+      }
       }
     </select>
     <p>Modelo</p>
-    <select class="dataField" formControlName="model" >
+    <select class="dataField" formControlName="model">
       @for (item of modelsArray; track $index) {
-        @if(item == car.model){
-          <option selected >{{item}}</option>
-        } @else {
-          <option >{{item}}</option>
-        }
+      @if(item == car.model){
+      <option selected>{{item}}</option>
+      } @else {
+      <option>{{item}}</option>
+      }
 
       }
     </select>
@@ -31,61 +31,56 @@
 
 
 
-  <div class="details" formArrayName = 'details'>
+  <div class="details" formArrayName='details'>
 
+    @for (item of details().controls; track $index) {
+    <div class="border">
+      <h4>Detalles del coche {{$index + 1}}</h4>
 
+      <div class="row" [formGroupName]="$index">
 
+        <div class="col">
 
-      @for (item of details().controls; track $index) {
-        <div class="row" >
-          <div [formGroupName]="$index">
+          <p>Fecha de registro</p>
+          <input class="dataField" type="date" formControlName="registerDate">
 
-            <div class="col">
-              <h4>Detalles del coche {{$index + 1}}</h4>
+          <p>Moneda</p>
+          <select class="dataField" formControlName="currency">
+            <option>EUR</option>
+          </select>
 
-              <p>Fecha de registro</p>
-              <input class="dataField" type="date" formControlName="registerDate">
+          <p>Matricula</p>
+          <input class="dataField" formControlName="licensePlate">
 
-              <p>Moneda</p>
-              <select class="dataField" formControlName="currency">
-                <option>EUR</option>
-              </select>
+          <p>Disponibilidad</p>
+          <input class="marginright" type="checkbox" formControlName="avaiability">
+        </div>
 
-              <p>Matricula</p>
-              <input class="dataField" formControlName="licensePlate">
+        <div class="col">
+          <p>Año de fabricacion</p>
+          <input class="dataField" formControlName="manufactureYear">
 
-              <p>Disponibilidad</p>
-              <input type="checkbox" formControlName="avaiability">
-            </div>
+          <p>Precio</p>
+          <input class="dataField" formControlName="price">
 
-            <div class="col">
-              <p>Año de fabricacion</p>
-              <input class="dataField" formControlName="manufactureYear">
+          <p>Kilometraje</p>
+          <input class="dataField" formControlName="milleage">
 
-              <p>Precio</p>
-              <input class="dataField" formControlName="price">
-
-              <p>Kilometraje</p>
-              <input class="dataField" formControlName="milleage">
-
-              <button appCustomButton="red" (click)="deleteDetals($index)" >
-                <img class="trashCan" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgy6cH4pk8uBtQ-_MBHx5MtDO8ms62KxR0UQ&s" alt="">
-                Eliminar
-              </button>
-            </div>
+          <button class="marginleft" appCustomButton="red" (click)="deleteDetals($index)">
+            <img class="trashCan"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgy6cH4pk8uBtQ-_MBHx5MtDO8ms62KxR0UQ&s" alt="">
+            Eliminar
+          </button>
         </div>
       </div>
-      }
-
-
-
-
+    </div>
+    }
   </div>
-
-
-  <button (click)="addDetails()" >Añadir detalles del coche</button>
-  <br>
-  <input type="submit" >
-
-
-
+  <div class="row">
+    <div class="col">
+      <button class="addButton" appCustomButton="green" (click)="addDetails()">Añadir detalles del coche</button>
+    </div>
+    <div class="col">
+      <input class="submitButton" appCustomButton="blue" type="submit">
+    </div>
+  </div>

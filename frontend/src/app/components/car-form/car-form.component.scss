@@ -9,25 +9,28 @@ form{
 }
 
 .row {
-  border-color: black;
-  border: 1px;
-  border-radius: 5px;
-  border-style: solid;
-
   margin: 20px;
   padding: 20px;
-
 
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 20px;
 
 }
 .col {
   display: flex;
   flex-direction: column;
   flex: 1;
-  flex-basis: 100%;
+  width: 50%;
+}
+.border{
+  border-color: black;
+  border: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  margin: 20px;
+  padding: 10px;
 }
 .dataField{
   width: 100%;
@@ -35,4 +38,21 @@ form{
 }
 .trashCan{
   width: 10px;
+}
+
+.marginleft{
+  margin-top: 20px;
+  margin-left: 75%;
+}
+.marginright{
+  margin-right: 95%;
+}
+.addButton{
+  width: 200px;
+
+}
+.submitButton{
+  width: 70px;
+  margin-left: 87%;
+
 }
