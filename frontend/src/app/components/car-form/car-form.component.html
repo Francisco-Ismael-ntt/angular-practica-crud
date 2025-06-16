@@ -1,4 +1,4 @@
-<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="carForm">
 
   <div class="basicData">
     @if(showAlert){
@@ -7,6 +7,7 @@
     <h3>Formulario de coches</h3>
     <p>Marca</p>
     <select class="dataField" #brands (change)="getModels(brands.value)" formControlName="brand">
+      <option value="" disabled> Selecciona una marca </option>
       @for (item of brandsArray; track $index) {
       @if(item == car.brand){
       <option selected>{{item}}</option>
@@ -17,6 +18,7 @@
     </select>
     <p>Modelo</p>
     <select class="dataField" formControlName="model">
+      <option value="" disabled> Selecciona un modelo </option>
       @for (item of modelsArray; track $index) {
       @if(item == car.model){
       <option selected>{{item}}</option>
@@ -33,7 +35,7 @@
 
   <div class="details" formArrayName='details'>
 
-    @for (item of details().controls; track $index) {
+    @for (item of details.controls; track $index) {
     <div class="border">
       <h4>Detalles del coche {{$index + 1}}</h4>
 
@@ -45,6 +47,7 @@
           <input class="dataField" type="date" formControlName="registerDate">
 
           <p>Moneda</p>
+          <option>Selecciona la divisa</option>
           <select class="dataField" formControlName="currency">
             <option>EUR</option>
           </select>
@@ -81,6 +84,6 @@
       <button class="addButton" appCustomButton="green" (click)="addDetails()">Añadir detalles del coche</button>
     </div>
     <div class="col">
-      <input class="submitButton" appCustomButton="blue" type="submit">
+      <input (click)="onSubmit()" class="submitButton" appCustomButton="blue" type="submit">
     </div>
   </div>
